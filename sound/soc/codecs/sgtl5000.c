@@ -1570,6 +1570,7 @@ static void sgtl5000_fill_defaults(struct i2c_client *client)
 	}
 }
 
+int sgtl5000_retry = 3;
 static int sgtl5000_i2c_probe(struct i2c_client *client,
 			      const struct i2c_device_id *id)
 {
@@ -1622,6 +1623,8 @@ static int sgtl5000_i2c_probe(struct i2c_client *client,
 	ret = regmap_read(sgtl5000->regmap, SGTL5000_CHIP_ID, &reg);
 	if (ret) {
 		dev_err(&client->dev, "Error reading chip id %d\n", ret);
+		if(sgtl5000_retry-- > 0)
+			ret = -EPROBE_DEFER;
 		goto disable_clk;
 	}
 
