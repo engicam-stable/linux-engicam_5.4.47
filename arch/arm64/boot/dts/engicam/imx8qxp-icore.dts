@@ -1,0 +1,14 @@
+// SPDX-License-Identifier: GPL-2.0+
+/*
+ * Copyright 2017-2020 NXP
+ */
+
+/dts-v1/;
+
+#include "../freescale/imx8qxp.dtsi"
+#include "imx8x-icore.dtsi"
+
+/ {
+	model = "Engicam i.Core MX8X";
+	compatible = "fsl,imx8qxp-mek", "fsl,imx8qxp";
+};
