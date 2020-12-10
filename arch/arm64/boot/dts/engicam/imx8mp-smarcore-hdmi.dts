@@ -1,0 +1,5 @@
+#include "imx8mp-smarcore.dts"
+
+&ldb {
+	status="disabled";
+};

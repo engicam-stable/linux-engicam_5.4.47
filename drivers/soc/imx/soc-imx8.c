@@ -97,8 +97,21 @@ static void __init imx8mm_soc_uid(void)
 {
 	void __iomem *ocotp_base;
 	struct device_node *np;
+	void __iomem *smarcore_clk;
+	
 	u32 offset = of_machine_is_compatible("fsl,imx8mp") ?
 		     IMX8MP_OCOTP_UID_OFFSET : 0;
+	
+	
+	if(of_machine_is_compatible("eng,smarcoremx8mp"))
+	{
+		//enable usb clock via CLKOUT1
+		smarcore_clk=ioremap(0x30360128, 10);
+		iowrite32(0x01F001D0,smarcore_clk);
+		iounmap(smarcore_clk);
+
+	}
+	
 
 	np = of_find_compatible_node(NULL, NULL, "fsl,imx8mm-ocotp");
 	if (!np)
