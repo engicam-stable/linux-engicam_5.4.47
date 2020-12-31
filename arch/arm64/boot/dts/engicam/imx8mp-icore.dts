@@ -28,7 +28,18 @@
 	chosen {
 		stdout-path = &uart2;
 	};
+	
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
 
+		USB_HUB_RESETn {
+			gpio-export,name = "usb_hub_resetn";
+			gpio-export,output = <1>;
+			gpios = <&gpio2 9 0>;
+		};
+	};
+	
 	leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
@@ -796,6 +807,7 @@
 			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x400001c3
 			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000019
 			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x40000019
+			MX8MP_IOMUXC_SD1_DATA7__GPIO2_IO09 0x19
 		>;
 	};
 
